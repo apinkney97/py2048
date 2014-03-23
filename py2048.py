@@ -1,6 +1,7 @@
 import numpy
 import pprint
 import random
+import datetime
 
 __author__ = 'Alex Pinkney'
 
@@ -204,6 +205,9 @@ def main():
     print str(board)
 
     nmoves = 0
+
+    start_time = datetime.datetime.now()
+
     while True:
         moves = board.get_legal_moves()
         if not moves:
@@ -213,11 +217,13 @@ def main():
         nmoves += 1
 
         if nmoves % 10000 == 0:
-            print "After %s moves:" % nmoves
+            print "After %s moves and %s:" % (nmoves, datetime.datetime.now() - start_time)
             print str(board)
             print board.score
 
-    print "Game over!"
+    print "Game over! Score was %s from %s moves" % (board.score, nmoves)
+    print str(board)
+    print "Took %s" % (datetime.datetime.now() - start_time,)
 
 if __name__ == '__main__':
     main()
